@@ -15,6 +15,7 @@ import com.example.petlife.fragment.*;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener {
 
     Button btnAdotar,btnDoar,btnFavoritos;
+    boolean isLogged = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,18 +59,36 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
 
         }else if(view.equals(btnFavoritos)){
+            if(isLogged) {
 
-            ListagemFavoritoFragment favoritoFragment = new ListagemFavoritoFragment();
-            fragmentTransaction.addToBackStack(null);
-            fragmentTransaction.replace(R.id.fragment_container,favoritoFragment);
-            fragmentTransaction.commit();
-
+                ListagemFavoritoFragment favoritoFragment = new ListagemFavoritoFragment();
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.replace(R.id.fragment_container, favoritoFragment);
+                fragmentTransaction.commit();
+            }
+            else {
+                HandleLoginFragment handleLoginFragment = new HandleLoginFragment();
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.replace(R.id.fragment_container, handleLoginFragment);
+                fragmentTransaction.commit();
+            }
         }else if(view.equals(btnAdotar)){
 
-            ListagemPetFragment adotarFragment = new ListagemPetFragment();
-            fragmentTransaction.addToBackStack(null);
-            fragmentTransaction.replace(R.id.fragment_container,adotarFragment);
-            fragmentTransaction.commit();
+            if(isLogged) {
+                ListagemPetFragment adotarFragment = new ListagemPetFragment();
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.replace(R.id.fragment_container, adotarFragment);
+                fragmentTransaction.commit();
+            }
+            else {
+                HandleLoginFragment handleLoginFragment = new HandleLoginFragment();
+                fragmentTransaction.addToBackStack(null);
+                fragmentTransaction.replace(R.id.fragment_container, handleLoginFragment);
+                fragmentTransaction.commit();
+
+            }
         }
     }
+
+
 }
