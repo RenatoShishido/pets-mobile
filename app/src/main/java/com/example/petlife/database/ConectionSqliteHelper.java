@@ -10,8 +10,8 @@ public class ConectionSqliteHelper extends SQLiteOpenHelper{
     private static final int DATABASE_VERSION = 1;
 
 
-    private static final String TABLE_USERS = "usuarios";
-    private static final String TABLE_PETS = "pets";
+    private static final String TABLE_USERS = "usuario";
+    private static final String TABLE_PETS = "pet";
 
 
     private static final String KEY_USER_ID = "id";
@@ -54,9 +54,9 @@ public class ConectionSqliteHelper extends SQLiteOpenHelper{
                 KEY_USER_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
                 KEY_USER_NOME + " VARCHAR(50) NOT NULL ," +
                 KEY_USER_EMAIL + " VARCHAR(50) NOT NULL ," +
-                KEY_USER_TELEFONE + " VARCHAR(50) NOT NULL ," +
+                KEY_USER_TELEFONE + " VARCHAR(50) ," +
                 KEY_USER_PASSWORD + " VARCHAR(50) NOT NULL ," +
-                KEY_USER_ENDERECO + " VARCHAR(50) NOT NULL ," +
+                KEY_USER_ENDERECO + " VARCHAR(50) ," +
                 KEY_USER_PROFILE_PICTURE_URL + " TEXT " +
                 ")";
 
