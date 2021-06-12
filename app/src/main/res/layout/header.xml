@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:orientation="vertical"
     android:layout_height="200dp"
-    android:background="@drawable/ic_baseline_arrow_back_24"
+    android:background="@color/design_default_color_primary_variant"
     android:gravity="bottom"
     android:padding="20dp"
    >
@@ -15,14 +15,16 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Traveling"
+        android:text="Pet Life"
         android:textSize="24sp"
+        android:textColor="@color/white"
      />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="www.taimoorsikander.com"
+        android:textColor="@color/white"
         android:textSize="14sp"
          />
 </LinearLayout>

@@ -11,8 +11,10 @@
         android:theme="@style/Theme.PetLife">
         <activity
             android:name=".activity.LoginActivity"
+            android:parentActivityName=".activity.MainActivity"
             android:label="@string/title_activity_login"></activity>
-        <activity android:name=".activity.MainActivity">
+        <activity android:name=".activity.MainActivity"
+            android:launchMode="singleTop">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

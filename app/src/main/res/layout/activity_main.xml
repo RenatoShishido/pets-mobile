@@ -23,8 +23,7 @@
 
         <include
             android:id="@+id/toolbar"
-            layout="@layout/toolbar"
-            />
+            layout="@layout/toolbar" />
 
         <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/fragment_container"
@@ -48,32 +47,40 @@
 
                 <LinearLayout
                     android:layout_width="match_parent"
-                    android:layout_height="60dp"
+                    android:layout_height="50dp"
+                    android:layout_marginTop="10dp"
                     android:layout_marginHorizontal="20dp"
-                    android:gravity="center"
+                    android:layout_gravity="center"
                     android:orientation="horizontal">
 
-                    <Button
-                        android:id="@+id/btnAdotar"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="5dp"
-                        android:text="Adotar" />
 
-                    <Button
-                        android:id="@+id/btnDoar"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="5dp"
-                        android:text="Doar" />
+                        <Button
+                            android:id="@+id/btnAdotar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@android:color/transparent"
+                            android:drawableTop="@drawable/ic_baseline_pets_24"
+                            android:text="Adotar" />
 
-                    <Button
-                        android:id="@+id/btnFavoritos"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginHorizontal="5dp"
 
-                        android:text="Favoritos" />
+                        <Button
+                            android:id="@+id/btnDoar"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@android:color/transparent"
+                            android:drawableTop="@drawable/ic_baseline_add_circle_24"
+                            android:gravity="center"
+                            android:text="Doar" />
+
+                        <Button
+                            android:id="@+id/btnFavoritos"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="@android:color/transparent"
+                            android:drawableTop="@drawable/ic_baseline_favorite_24"
+                            android:gravity="center"
+
+                            android:text="Favoritos" />
 
                 </LinearLayout>
             </HorizontalScrollView>

@@ -6,6 +6,12 @@
     android:layout_height="match_parent">
 
 
+    <include
+        android:id="@+id/toolbar"
+        layout="@layout/toolbar"
+        />
+
+
     <EditText
         android:id="@+id/username"
         android:layout_width="0dp"

@@ -17,6 +17,7 @@ import android.view.MenuItem;
 import android.view.View;
 
 import android.widget.Button;
+import android.widget.ImageButton;
 
 
 import com.example.petlife.R;
@@ -51,13 +52,15 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnAdotar = findViewById(R.id.btnAdotar);
         btnDoar = findViewById(R.id.btnDoar);
         btnFavoritos = findViewById(R.id.btnFavoritos);
-        CadastroDoacaoFragment doarFragment = new CadastroDoacaoFragment();//add fragment to transaction
-        fragmentTransaction.replace(R.id.fragment_container, doarFragment);
-        fragmentTransaction.commit();
-
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
         toolbar = findViewById(R.id.toolbar);
+
+        CadastroDoacaoFragment doarFragment = new CadastroDoacaoFragment();
+        fragmentTransaction.replace(R.id.fragment_container, doarFragment);
+        fragmentTransaction.commit();
+
+
 
         setSupportActionBar(toolbar);
         navigationView.bringToFront();
@@ -112,10 +115,10 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             fragmentTransaction.replace(R.id.fragment_container, adotarFragment);
             fragmentTransaction.commit();
 
-        }
-
-
     }
+
+
+}
 
 
     @Override
@@ -133,9 +136,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem menuItem) {
         switch (menuItem.getItemId()) {
-            case R.id.nav_home: break; case R.id.nav_bus:
-                Intent intent = new Intent(MainActivity.this, LoginActivity.class);
-                startActivity(intent);
+            case R.id.nav_adotar:
+                this.onClick(btnAdotar);
+
+                break;
+            case R.id.nav_doar:
+
+                this.onClick(btnDoar);
+                break;
+
+            case R.id.nav_login:
+
+                Intent i = new Intent(this,LoginActivity.class);
+                startActivity(i);
                 break;
 //            case R.id.nav_login: menu.findItem(R.id.nav_logout).setVisible(true);
 //                menu.findItem(R.id.nav_profile).setVisible(true);
