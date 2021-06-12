@@ -1,66 +1,83 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.drawerlayout.widget.DrawerLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    tools:context=".activity.MainActivity"
+    tools:openDrawer="start">
 
-
-    <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        android:id="@+id/fragment_container"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
-
+    <com.google.android.material.navigation.NavigationView
+        android:id="@+id/nav_view"
+        android:layout_width="wrap_content"
+        android:layout_height="match_parent"
+        android:layout_gravity="start"
+        app:headerLayout="@layout/header"
+        app:menu="@menu/drawer_menu" />
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:background="#EEEEEE"
-        android:gravity="center"
-        android:layout_alignParentBottom="true"
-        android:id="@+id/fragment_top_id"
-        android:layout_height="70dp">
+        android:layout_height="match_parent">
 
+        <include
+            android:id="@+id/toolbar"
+            layout="@layout/toolbar"
+            />
 
-        <HorizontalScrollView
+        <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+            android:id="@+id/fragment_container"
             android:layout_width="match_parent"
-            android:scrollbars="none"
-            android:background="#FFFFFF"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent" />
 
-            <LinearLayout
+        <RelativeLayout
+            android:id="@+id/fragment_top_id"
+            android:layout_width="match_parent"
+            android:layout_height="70dp"
+            android:layout_alignParentBottom="true"
+            android:background="#EEEEEE"
+            android:gravity="center">
+
+
+            <HorizontalScrollView
                 android:layout_width="match_parent"
-                android:orientation="horizontal"
-                android:layout_marginHorizontal="20dp"
-                android:gravity="center"
-                android:layout_height="60dp">
+                android:layout_height="wrap_content"
+                android:background="#FFFFFF"
+                android:scrollbars="none">
 
-                <Button
-                    android:id="@+id/btnAdotar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="5dp"
-                    android:text="Adotar" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:layout_marginHorizontal="20dp"
+                    android:gravity="center"
+                    android:orientation="horizontal">
 
-                <Button
-                    android:id="@+id/btnDoar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="5dp"
-                    android:text="Doar" />
+                    <Button
+                        android:id="@+id/btnAdotar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="5dp"
+                        android:text="Adotar" />
 
-                <Button
-                    android:id="@+id/btnFavoritos"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="5dp"
+                    <Button
+                        android:id="@+id/btnDoar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="5dp"
+                        android:text="Doar" />
 
-                    android:text="Favoritos" />
+                    <Button
+                        android:id="@+id/btnFavoritos"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="5dp"
 
-            </LinearLayout>
-        </HorizontalScrollView>
+                        android:text="Favoritos" />
 
+                </LinearLayout>
+            </HorizontalScrollView>
+
+        </RelativeLayout>
     </RelativeLayout>
-
-
-</RelativeLayout>
+</androidx.drawerlayout.widget.DrawerLayout>
