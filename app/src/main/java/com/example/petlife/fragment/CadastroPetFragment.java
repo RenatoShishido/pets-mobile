@@ -10,7 +10,7 @@ import android.view.ViewGroup;
 import com.example.petlife.R;
 
 
-public class CadastroDoacaoFragment extends Fragment {
+public class CadastroPetFragment extends Fragment {
 
 
     @Nullable

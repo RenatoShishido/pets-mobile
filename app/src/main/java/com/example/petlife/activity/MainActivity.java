@@ -17,7 +17,6 @@ import android.view.MenuItem;
 import android.view.View;
 
 import android.widget.Button;
-import android.widget.ImageButton;
 
 
 import com.example.petlife.R;
@@ -41,7 +40,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         btnAdotar.setOnClickListener(this);
         btnDoar.setOnClickListener(this);
         btnFavoritos.setOnClickListener(this);
-
     }
 
     private void inicializarItens() {
@@ -56,8 +54,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
         navigationView = findViewById(R.id.nav_view);
         toolbar = findViewById(R.id.toolbar);
 
-        CadastroDoacaoFragment doarFragment = new CadastroDoacaoFragment();
-        fragmentTransaction.replace(R.id.fragment_container, doarFragment);
+        ListagemPetFragment adotarFragment = new ListagemPetFragment();
+        fragmentTransaction.replace(R.id.fragment_container, adotarFragment);
         fragmentTransaction.commit();
 
 
@@ -82,7 +80,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             if (isLogged) {
 
 
-                CadastroDoacaoFragment doarFragment = new CadastroDoacaoFragment();//add fragment to transaction
+                CadastroPetFragment doarFragment = new CadastroPetFragment();//add fragment to transaction
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.replace(R.id.fragment_container, doarFragment);
                 fragmentTransaction.commit();

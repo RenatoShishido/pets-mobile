@@ -19,7 +19,9 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+
+        >
 
         <include
             android:id="@+id/toolbar"
@@ -28,7 +30,10 @@
         <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
             android:id="@+id/fragment_container"
             android:layout_width="match_parent"
+            android:layout_marginTop="60dp"
+            android:layout_marginBottom="70dp"
             android:layout_height="match_parent" />
+
 
         <RelativeLayout
             android:id="@+id/fragment_top_id"
