@@ -26,10 +26,12 @@ import com.google.android.material.navigation.NavigationView;
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
 
     Button btnAdotar, btnDoar, btnFavoritos;
-    boolean isLogged = false;
+    boolean isLogged = true;
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
+    FragmentManager fragmentManager;
+    FragmentTransaction fragmentTransaction;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,8 +45,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     }
 
     private void inicializarItens() {
-        FragmentManager fragmentManager = getFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+         fragmentManager = getFragmentManager();
+         fragmentTransaction = fragmentManager.beginTransaction();
 
 
         btnAdotar = findViewById(R.id.btnAdotar);
@@ -73,8 +75,8 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
     @Override
     public void onClick(View view) {
-        FragmentManager fragmentManager = getFragmentManager();
-        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+         fragmentManager = getFragmentManager();
+         fragmentTransaction = fragmentManager.beginTransaction();
 
         if (view.equals(btnDoar)) {
             if (isLogged) {
@@ -148,15 +150,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Intent i = new Intent(this,LoginActivity.class);
                 startActivity(i);
                 break;
-//            case R.id.nav_login: menu.findItem(R.id.nav_logout).setVisible(true);
-//                menu.findItem(R.id.nav_profile).setVisible(true);
-//                menu.findItem(R.id.nav_login).setVisible(false);
-//                break;
-//            case R.id.nav_logout: menu.findItem(R.id.nav_logout).setVisible(false);
-//                menu.findItem(R.id.nav_profile).setVisible(false);
-//                menu.findItem(R.id.nav_login).setVisible(true);
-//                break;
-//            case R.id.nav_share: Toast.makeText(this, "Share", Toast.LENGTH_SHORT).show(); break;
 
         }
         drawerLayout.closeDrawer(GravityCompat.START); return true;

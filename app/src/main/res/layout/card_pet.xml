@@ -32,7 +32,7 @@
 
                 android:text="Agora mesmo" />
 
-            <ImageView
+            <ImageButton
                 android:id="@+id/petImage"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
