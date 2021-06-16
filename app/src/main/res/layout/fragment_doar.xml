@@ -32,10 +32,10 @@
         android:textColor="#FFFFFF"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkbox_meat" />
+        app:layout_constraintTop_toBottomOf="@+id/checkbox_vacinado" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName2"
+        android:id="@+id/nomePET"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
@@ -48,7 +48,7 @@
         app:layout_constraintTop_toBottomOf="@+id/tituloTFF" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName3"
+        android:id="@+id/idadePET"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
@@ -58,7 +58,7 @@
         android:hint="Idade"
         android:inputType="number"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
+        app:layout_constraintTop_toBottomOf="@+id/nomePET" />
 
     <Spinner
         android:id="@+id/spinner1"
@@ -70,10 +70,10 @@
         android:background="@android:drawable/btn_dropdown"
         android:spinnerMode="dropdown"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
+        app:layout_constraintTop_toBottomOf="@+id/nomePET" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName5"
+        android:id="@+id/tipoPET"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
@@ -83,10 +83,10 @@
         android:inputType="textPersonName"
         android:hint="Tipo"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName3" />
+        app:layout_constraintTop_toBottomOf="@+id/idadePET" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName6"
+        android:id="@+id/racaPET"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="37dp"
@@ -96,10 +96,10 @@
         android:inputType="textPersonName"
         android:hint="Raça"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName5" />
+        app:layout_constraintTop_toBottomOf="@+id/tipoPET" />
 
     <CheckBox
-        android:id="@+id/checkbox_meat"
+        android:id="@+id/checkbox_vacinado"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="19dp"
@@ -107,11 +107,11 @@
         android:text="Vacinado"
         android:textColor="#000000"
         android:textSize="14sp"
-        app:layout_constraintStart_toEndOf="@+id/checkbox_cheese"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName6" />
+        app:layout_constraintStart_toEndOf="@+id/checkbox_castrado"
+        app:layout_constraintTop_toBottomOf="@+id/racaPET" />
 
     <CheckBox
-        android:id="@+id/checkbox_cheese"
+        android:id="@+id/checkbox_castrado"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="37dp"
@@ -122,7 +122,7 @@
         android:textColor="#000000"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName6" />
+        app:layout_constraintTop_toBottomOf="@+id/racaPET" />
 
     <TextView
         android:id="@+id/textView"
@@ -134,7 +134,7 @@
         android:text="Sexo"
         android:textColor="#000000"
         android:textSize="16sp"
-        app:layout_constraintStart_toEndOf="@+id/editTextTextPersonName3"
-        app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
+        app:layout_constraintStart_toEndOf="@+id/idadePET"
+        app:layout_constraintTop_toBottomOf="@+id/nomePET" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

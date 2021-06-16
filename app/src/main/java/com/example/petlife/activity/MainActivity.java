@@ -21,12 +21,13 @@ import android.widget.Button;
 
 import com.example.petlife.R;
 import com.example.petlife.fragment.*;
+import com.example.petlife.utils.Utils;
 import com.google.android.material.navigation.NavigationView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener, NavigationView.OnNavigationItemSelectedListener {
 
     Button btnAdotar, btnDoar, btnFavoritos;
-    boolean isLogged = true;
+
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
@@ -79,9 +80,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
          fragmentTransaction = fragmentManager.beginTransaction();
 
         if (view.equals(btnDoar)) {
-            if (isLogged) {
-
-
+            if (Utils.getLogged()) {
                 CadastroPetFragment doarFragment = new CadastroPetFragment();//add fragment to transaction
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.replace(R.id.fragment_container, doarFragment);
@@ -95,7 +94,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
             }
 
         } else if (view.equals(btnFavoritos)) {
-            if (isLogged) {
+            if (Utils.getLogged()) {
 
                 ListagemFavoritoFragment favoritoFragment = new ListagemFavoritoFragment();
                 fragmentTransaction.addToBackStack(null);

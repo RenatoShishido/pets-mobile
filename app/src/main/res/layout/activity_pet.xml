@@ -43,7 +43,7 @@
         android:layout_marginLeft="48dp"
         android:layout_marginTop="20dp"
         android:ems="8"
-        android:text="RaÃ§a"
+        android:text="Raça"
         android:textColor="#000000"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
