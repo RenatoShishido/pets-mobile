@@ -13,6 +13,7 @@ import com.example.petlife.validators.exception.ArgumentInvalidException;
 
 import org.mindrot.jbcrypt.BCrypt;
 
+
 public class UsuarioDAO {
 
     SQLiteDatabase db;
@@ -27,6 +28,7 @@ public class UsuarioDAO {
         String passwordHash = BCrypt.hashpw(usuario.getPassword(), salt);
 
         usuario.setPassword(passwordHash);
+
     }
 
 
@@ -53,9 +55,10 @@ public class UsuarioDAO {
         }
     }
 
-    public Usuario getById(String email) {
+    public Usuario getByEmail(String email) {
         try {
-            String queryUser = String.format("SELECT * FROM usuario WHERE email = " + email);
+            String queryUser =
+                    String.format("SELECT * FROM usuario WHERE email = \""+ email + "\"" );
             Cursor cursor = db.rawQuery(queryUser, null);
 
             if(cursor == null) {
@@ -86,7 +89,7 @@ public class UsuarioDAO {
         String email = usuario.getEmail();
         String password = usuario.getPassword();
 
-        Usuario usuarioBanco = this.getById(usuario.getEmail());
+        Usuario usuarioBanco = this.getByEmail(usuario.getEmail());
         String senhaBanco = usuarioBanco.getPassword();
 
         return BCrypt.checkpw(password, senhaBanco);

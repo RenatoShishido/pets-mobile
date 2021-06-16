@@ -34,10 +34,10 @@ public class Validator {
         if(pet.getSexo() == null || pet.getSexo().isEmpty())
             throw new ArgumentInvalidException("Nome é invalido");
 
-        if(pet.getVacinado() == null || pet.getVacinado().isEmpty())
+        if(pet.getVacinado() == null)
             throw new ArgumentInvalidException("Nome é invalido");
 
-        if(pet.getCastrado() == null || pet.getCastrado().isEmpty())
+        if(pet.getCastrado() == null)
             throw new ArgumentInvalidException("Nome é invalido");
     }
 }

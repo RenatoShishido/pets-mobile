@@ -11,18 +11,18 @@ public class Pet implements Serializable {
 
     private Integer id;
     private String nome;
-    private String idade;
+    private Integer idade;
     private String raca;
     private String tipo;
     private String sexo;
-    private String vacinado;
-    private String castrado;
+    private Integer vacinado;
+    private Integer castrado;
     private String userId;
-    private String petPictureUrl;
+    private Integer petPictureUrl;
 
     public Pet() {}
 
-    public Pet(Integer id, String nome, String idade, String raca, String tipo, String sexo, String vacinado, String castrado, String userId, String petPictureUrl) {
+    public Pet(Integer id, String nome, Integer idade, String raca, String tipo, String sexo, Integer vacinado, Integer castrado, String userId, Integer petPictureUrl) {
         this.id = id;
         this.nome = nome;
         this.idade = idade;
@@ -51,11 +51,11 @@ public class Pet implements Serializable {
         this.nome = nome;
     }
 
-    public String getIdade() {
+    public Integer getIdade() {
         return idade;
     }
 
-    public void setIdade(String idade) {
+    public void setIdade(Integer idade) {
         this.idade = idade;
     }
 
@@ -83,19 +83,19 @@ public class Pet implements Serializable {
         this.sexo = sexo;
     }
 
-    public String getVacinado() {
+    public Integer getVacinado() {
         return vacinado;
     }
 
-    public void setVacinado(String vacinado) {
+    public void setVacinado(Integer vacinado) {
         this.vacinado = vacinado;
     }
 
-    public String getCastrado() {
+    public Integer getCastrado() {
         return castrado;
     }
 
-    public void setCastrado(String castrado) {
+    public void setCastrado(Integer castrado) {
         this.castrado = castrado;
     }
 
@@ -107,11 +107,11 @@ public class Pet implements Serializable {
         this.userId = userId;
     }
 
-    public String getPetPictureUrl() {
+    public Integer getPetPictureUrl() {
         return petPictureUrl;
     }
 
-    public void setPetPictureUrl(String petPictureUrl) {
+    public void setPetPictureUrl(Integer petPictureUrl) {
         this.petPictureUrl = petPictureUrl;
     }
 

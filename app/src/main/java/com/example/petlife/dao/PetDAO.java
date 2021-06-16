@@ -59,13 +59,14 @@ public class PetDAO {
             while(cursor.moveToNext()){
                 pet.setId(cursor.getInt(cursor.getColumnIndex("id")));
                 pet.setNome(cursor.getString(cursor.getColumnIndex("nome")));
-                pet.setIdade(cursor.getString(cursor.getColumnIndex("idade")));
+                pet.setIdade(cursor.getInt(cursor.getColumnIndex("idade")));
                 pet.setRaca(cursor.getString(cursor.getColumnIndex("raca")));
                 pet.setTipo(cursor.getString(cursor.getColumnIndex("tipo")));
                 pet.setSexo(cursor.getString(cursor.getColumnIndex("sexo")));
-                pet.setCastrado(cursor.getString(cursor.getColumnIndex("castrado")));
+                pet.setCastrado(cursor.getInt(cursor.getColumnIndex("castrado")));
+                pet.setCastrado(cursor.getInt(cursor.getColumnIndex("vacinado")));
                 pet.setUserId(cursor.getString(cursor.getColumnIndex("userId")));
-                pet.setPetPictureUrl(cursor.getString(cursor.getColumnIndex("petPictureUrl")));
+                pet.setPetPictureUrl(cursor.getInt(cursor.getColumnIndex("petPictureUrl")));
             }
 
             return pet;
@@ -88,13 +89,14 @@ public class PetDAO {
                 Pet pet = new Pet();
                 pet.setId(cursor.getInt(cursor.getColumnIndex("id")));
                 pet.setNome(cursor.getString(cursor.getColumnIndex("nome")));
-                pet.setIdade(cursor.getString(cursor.getColumnIndex("idade")));
+                pet.setIdade(cursor.getInt(cursor.getColumnIndex("idade")));
                 pet.setRaca(cursor.getString(cursor.getColumnIndex("raca")));
                 pet.setTipo(cursor.getString(cursor.getColumnIndex("tipo")));
                 pet.setSexo(cursor.getString(cursor.getColumnIndex("sexo")));
-                pet.setCastrado(cursor.getString(cursor.getColumnIndex("castrado")));
+                pet.setCastrado(cursor.getInt(cursor.getColumnIndex("castrado")));
+                pet.setCastrado(cursor.getInt(cursor.getColumnIndex("vacinado")));
                 pet.setUserId(cursor.getString(cursor.getColumnIndex("userId")));
-                pet.setPetPictureUrl(cursor.getString(cursor.getColumnIndex("petPictureUrl")));
+                pet.setPetPictureUrl(cursor.getInt(cursor.getColumnIndex("petPictureUrl")));
             }
 
             return petList;

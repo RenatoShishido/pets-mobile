@@ -99,4 +99,17 @@ public class Usuario implements Serializable {
     public void setUserPictureUrl(String userPictureUrl) {
         this.userPictureUrl = userPictureUrl;
     }
+
+    @Override
+    public String toString() {
+        return "Usuario{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", email='" + email + '\'' +
+                ", telefone='" + telefone + '\'' +
+                ", password='" + password + '\'' +
+                ", endereco='" + endereco + '\'' +
+                ", userPictureUrl='" + userPictureUrl + '\'' +
+                '}';
+    }
 }
