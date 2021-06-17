@@ -41,7 +41,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.MyViewHolder> 
 
         holder.petNome.setText(pet.getNome());
         holder.petDescricao.setText("qualquerCoisa");
-        holder.petImage.setImageResource(pet.getId());
+        holder.petImage.setImageResource(pet.getPetPictureUrl());
 
     }
 
