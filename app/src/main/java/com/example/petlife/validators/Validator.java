@@ -26,18 +26,18 @@ public class Validator {
             throw new ArgumentInvalidException("Nome é invalido");
 
         if(pet.getRaca() == null || pet.getRaca().isEmpty())
-            throw new ArgumentInvalidException("Nome é invalido");
+            throw new ArgumentInvalidException("Raca é invalido");
 
         if(pet.getTipo() == null || pet.getTipo().isEmpty())
-            throw new ArgumentInvalidException("Nome é invalido");
+            throw new ArgumentInvalidException("Tipo é invalido");
 
         if(pet.getSexo() == null || pet.getSexo().isEmpty())
-            throw new ArgumentInvalidException("Nome é invalido");
+            throw new ArgumentInvalidException("Sexo é invalido");
 
         if(pet.getVacinado() == null)
-            throw new ArgumentInvalidException("Nome é invalido");
+            throw new ArgumentInvalidException("Vacinado é invalido");
 
         if(pet.getCastrado() == null)
-            throw new ArgumentInvalidException("Nome é invalido");
+            throw new ArgumentInvalidException("Castrado é invalido");
     }
 }

@@ -86,7 +86,6 @@ public class UsuarioDAO {
 
     public boolean auth(Usuario usuario) {
         Validator.checkAuth(usuario);
-        String email = usuario.getEmail();
         String password = usuario.getPassword();
 
         Usuario usuarioBanco = this.getByEmail(usuario.getEmail());

@@ -17,12 +17,12 @@ public class Pet implements Serializable {
     private String sexo;
     private Integer vacinado;
     private Integer castrado;
-    private String userId;
+    private Integer userId;
     private Integer petPictureUrl;
 
     public Pet() {}
 
-    public Pet(Integer id, String nome, Integer idade, String raca, String tipo, String sexo, Integer vacinado, Integer castrado, String userId, Integer petPictureUrl) {
+    public Pet(Integer id, String nome, Integer idade, String raca, String tipo, String sexo, Integer vacinado, Integer castrado, Integer userId, Integer petPictureUrl) {
         this.id = id;
         this.nome = nome;
         this.idade = idade;
@@ -99,11 +99,11 @@ public class Pet implements Serializable {
         this.castrado = castrado;
     }
 
-    public String getUserId() {
+    public Integer getUserId() {
         return userId;
     }
 
-    public void setUserId(String userId) {
+    public void setUserId(Integer userId) {
         this.userId = userId;
     }
 
@@ -128,5 +128,21 @@ public class Pet implements Serializable {
     @Override
     public int hashCode() {
         return Objects.hash(id);
+    }
+
+    @Override
+    public String toString() {
+        return "Pet{" +
+                "id=" + id +
+                ", nome='" + nome + '\'' +
+                ", idade=" + idade +
+                ", raca='" + raca + '\'' +
+                ", tipo='" + tipo + '\'' +
+                ", sexo='" + sexo + '\'' +
+                ", vacinado=" + vacinado +
+                ", castrado=" + castrado +
+                ", userId=" + userId +
+                ", petPictureUrl=" + petPictureUrl +
+                '}';
     }
 }

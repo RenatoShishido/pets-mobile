@@ -30,6 +30,7 @@ public class ListagemPetFragment extends Fragment {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         rcvCardPets.setLayoutManager(layoutManager);
 
+
         List<Pet> pets = new ArrayList<>();
 
         Pet p = new Pet();

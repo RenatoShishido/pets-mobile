@@ -27,6 +27,7 @@ import android.widget.Toast;
 
 import com.example.petlife.R;
 import com.example.petlife.dao.UsuarioDAO;
+import com.example.petlife.entities.Session;
 import com.example.petlife.entities.Usuario;
 import com.example.petlife.utils.Utils;
 
@@ -66,7 +67,9 @@ public class LoginActivity extends AppCompatActivity {
             UsuarioDAO userDAO = new UsuarioDAO(this);
 
             if(userDAO.auth(user)) {
-                Utils.isLogged = true;
+                Session session = Session.getSession();
+                session.setUsuario(user);
+                session.setIsLogged(true);
                 Intent it = new Intent(this, MainActivity.class);
                 startActivity(it);
 
@@ -88,6 +91,7 @@ public class LoginActivity extends AppCompatActivity {
 
             try {
                 userDAO.insert(user);
+                Utils.aviso(this, "Usuario cadastrado com sucesso");
             } catch (Exception e) {
                 Utils.aviso(this, e.getMessage());
             }

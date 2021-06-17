@@ -34,6 +34,7 @@ public class PetDAO {
             values.put("tipo", pet.getTipo());
             values.put("sexo", pet.getSexo());
             values.put("castrado", pet.getCastrado());
+            values.put("vacinado", pet.getVacinado());
             values.put("userId", pet.getUserId());
             values.put("petPictureUrl", pet.getPetPictureUrl());
 
@@ -65,8 +66,9 @@ public class PetDAO {
                 pet.setSexo(cursor.getString(cursor.getColumnIndex("sexo")));
                 pet.setCastrado(cursor.getInt(cursor.getColumnIndex("castrado")));
                 pet.setCastrado(cursor.getInt(cursor.getColumnIndex("vacinado")));
-                pet.setUserId(cursor.getString(cursor.getColumnIndex("userId")));
+                pet.setUserId(cursor.getInt(cursor.getColumnIndex("userId")));
                 pet.setPetPictureUrl(cursor.getInt(cursor.getColumnIndex("petPictureUrl")));
+
             }
 
             return pet;
@@ -77,11 +79,12 @@ public class PetDAO {
 
     public List<Pet> getByNome(String nome) {
         try {
-            String query = String.format("SELECT * FROM pet WHERE nome = " + nome);
-            Cursor cursor = db.rawQuery(query, null);
+            String queryUser =
+                    String.format("SELECT * FROM pet WHERE nome = \""+ nome + "\"" );
+            Cursor cursor = db.rawQuery(queryUser, null);
 
             if(cursor == null) {
-                throw new ArgumentInvalidException("Pets nao encontrados");
+                throw new ArgumentInvalidException("Pets nao encontrado");
             }
 
             List<Pet> petList = new ArrayList<Pet>();
@@ -95,8 +98,43 @@ public class PetDAO {
                 pet.setSexo(cursor.getString(cursor.getColumnIndex("sexo")));
                 pet.setCastrado(cursor.getInt(cursor.getColumnIndex("castrado")));
                 pet.setCastrado(cursor.getInt(cursor.getColumnIndex("vacinado")));
-                pet.setUserId(cursor.getString(cursor.getColumnIndex("userId")));
+                pet.setUserId(cursor.getInt(cursor.getColumnIndex("userId")));
                 pet.setPetPictureUrl(cursor.getInt(cursor.getColumnIndex("petPictureUrl")));
+
+                petList.add(pet);
+            }
+
+            return petList;
+        } catch (SQLiteException e) {
+            throw new IllegalArgumentException(e.getMessage());
+        }
+    }
+
+    public List<Pet> getAll(String nome) {
+        try {
+            String queryUser =
+                    String.format("SELECT * FROM pet");
+            Cursor cursor = db.rawQuery(queryUser, null);
+
+            if(cursor == null) {
+                throw new ArgumentInvalidException("Nao existe pets");
+            }
+
+            List<Pet> petList = new ArrayList<Pet>();
+            while(cursor.moveToNext()){
+                Pet pet = new Pet();
+                pet.setId(cursor.getInt(cursor.getColumnIndex("id")));
+                pet.setNome(cursor.getString(cursor.getColumnIndex("nome")));
+                pet.setIdade(cursor.getInt(cursor.getColumnIndex("idade")));
+                pet.setRaca(cursor.getString(cursor.getColumnIndex("raca")));
+                pet.setTipo(cursor.getString(cursor.getColumnIndex("tipo")));
+                pet.setSexo(cursor.getString(cursor.getColumnIndex("sexo")));
+                pet.setCastrado(cursor.getInt(cursor.getColumnIndex("castrado")));
+                pet.setCastrado(cursor.getInt(cursor.getColumnIndex("vacinado")));
+                pet.setUserId(cursor.getInt(cursor.getColumnIndex("userId")));
+                pet.setPetPictureUrl(cursor.getInt(cursor.getColumnIndex("petPictureUrl")));
+
+                petList.add(pet);
             }
 
             return petList;

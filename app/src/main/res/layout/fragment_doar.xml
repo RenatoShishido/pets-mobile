@@ -23,16 +23,16 @@
         android:id="@+id/doarBF"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="108dp"
-        android:layout_marginLeft="108dp"
-        android:layout_marginTop="46dp"
+        android:layout_marginStart="120dp"
+        android:layout_marginLeft="120dp"
+        android:layout_marginTop="12dp"
         android:background="#2196F3"
         android:ems="10"
         android:text="DOAR"
         android:textColor="#FFFFFF"
         android:textSize="14sp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/checkbox_vacinado" />
+        app:layout_constraintTop_toBottomOf="@+id/imageButtonPET" />
 
     <EditText
         android:id="@+id/nomePET"
@@ -136,5 +136,27 @@
         android:textSize="16sp"
         app:layout_constraintStart_toEndOf="@+id/idadePET"
         app:layout_constraintTop_toBottomOf="@+id/nomePET" />
+
+    <ImageButton
+        android:id="@+id/imageButtonPET"
+        android:layout_width="152dp"
+        android:layout_height="57dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="56dp"
+        android:layout_marginRight="56dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkbox_vacinado"
+        app:srcCompat="@android:drawable/ic_menu_gallery" />
+
+    <Button
+        android:id="@+id/pegaFoto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="52dp"
+        android:layout_marginLeft="52dp"
+        android:layout_marginTop="8dp"
+        android:text="Insira Foto PET"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/checkbox_castrado" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
