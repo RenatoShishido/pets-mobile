@@ -145,9 +145,14 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.nav_login:
-
-                Intent i = new Intent(this,LoginActivity.class);
-                startActivity(i);
+                if (Session.getSession().isLogged()) {
+                    Intent i = new Intent(MainActivity.this, PerfilActivity.class);
+                    startActivity(i);
+                }
+                else {
+                    Intent i = new Intent(MainActivity.this, LoginActivity.class);
+                    startActivity(i);
+                }
                 break;
 
             case R.id.loggout:

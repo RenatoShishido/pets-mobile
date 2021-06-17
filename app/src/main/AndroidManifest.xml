@@ -7,23 +7,30 @@
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
-        android:supportsRtl="true"
-      >
+        android:supportsRtl="true">
+        <activity android:name=".activity.PerfilActivity"
+            android:label="@string/title_activity_perfil"
+            android:parentActivityName=".activity.MainActivity"
+            android:theme="@style/Theme.PetLife.NoActionBar" />
+        <activity
+            android:name=".activity.RegisterActivity"
+            android:label="@string/title_activity_register"
+            android:parentActivityName=".activity.MainActivity"
+            android:theme="@style/Theme.PetLife.NoActionBar" />
         <activity
             android:name=".activity.PetActivity"
             android:label="@string/title_activity_pet"
-            android:theme="@style/Theme.PetLife.NoActionBar"
             android:parentActivityName=".activity.MainActivity"
-            ></activity>
+            android:theme="@style/Theme.PetLife.NoActionBar" />
         <activity
             android:name=".activity.LoginActivity"
             android:label="@string/title_activity_login"
-            android:theme="@style/Theme.PetLife.NoActionBar"
-            android:parentActivityName=".activity.MainActivity" />
+            android:parentActivityName=".activity.MainActivity"
+            android:theme="@style/Theme.PetLife.NoActionBar" />
         <activity
             android:name=".activity.MainActivity"
-            android:theme="@style/Theme.PetLife.NoActionBar"
-            android:launchMode="singleTop">
+            android:launchMode="singleTop"
+            android:theme="@style/Theme.PetLife.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

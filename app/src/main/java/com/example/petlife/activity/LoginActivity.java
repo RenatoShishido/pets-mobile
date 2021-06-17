@@ -36,7 +36,8 @@ import java.time.Duration;
 
 public class LoginActivity extends AppCompatActivity {
     Toolbar toolbar;
-    EditText email, password, emailCadastro, passwordCadastro, nome , endereco, telefone;
+    EditText email, password;
+    Button btnFazerCadastro;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -49,15 +50,8 @@ public class LoginActivity extends AppCompatActivity {
         email = findViewById(R.id.email);
         password = findViewById(R.id.password);
 
-        emailCadastro = findViewById(R.id.emailCadastro);
-        passwordCadastro = findViewById(R.id.passwordCadastro);
-        nome = findViewById(R.id.nome);
-        endereco = findViewById(R.id.endereco);
-        telefone = findViewById(R.id.telefone);
-
         Button btnFazerLogin = findViewById(R.id.login);
-
-        Button btnFazerCadastro = findViewById(R.id.cadastro);
+        btnFazerCadastro = findViewById(R.id.btnFazerCadastro);
 
         btnFazerLogin.setOnClickListener(v -> {
             Usuario user = new Usuario();
@@ -77,25 +71,11 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-
         btnFazerCadastro.setOnClickListener(v -> {
 
-            Usuario user = new Usuario();
-            user.setEmail(emailCadastro.getText().toString());
-            user.setPassword(passwordCadastro.getText().toString());
-            user.setNome(nome.getText().toString());
-            user.setEndereco(endereco.getText().toString());
-            user.setTelefone(telefone.getText().toString());
 
-            UsuarioDAO userDAO = new UsuarioDAO(this);
-
-            try {
-                userDAO.insert(user);
-                Utils.aviso(this, "Usuario cadastrado com sucesso");
-            } catch (Exception e) {
-                Utils.aviso(this, e.getMessage());
-            }
-
+            Intent i = new Intent(LoginActivity.this,RegisterActivity.class);
+            startActivity(i);
         });
     }
 
