@@ -35,23 +35,29 @@ public class ListagemPetFragment extends Fragment {
 
         Pet p = new Pet();
         p.setNome("Mel");
-        p.setId(R.drawable.dog);
+        p.setCastrado(1);
+        p.setIdade(16);
+        p.setRaca("Pintcher");
+        p.setSexo("M");
+        p.setVacinado(0);
+        p.setTipo("Cachorro");
+        p.setPetPictureUrl(R.drawable.dog);
         pets.add(p);
 
         Pet p1 = new Pet();
         p1.setNome("Lett");
-        p1.setId(R.drawable.gato2);
+        p1.setPetPictureUrl(R.drawable.gato2);
         pets.add(p1);
 
         Pet p2 = new Pet();
         p2.setNome("trim");
-        p2.setId(R.drawable.gato);
+        p2.setPetPictureUrl(R.drawable.gato);
         pets.add(p2);
 
         Pet p3 = new Pet();
         p3.setNome("Guto");
 
-        p3.setId(R.drawable.dog2);
+        p3.setPetPictureUrl(R.drawable.dog2);
         pets.add(p3);
 
         CardAdapter cardAdapter = new CardAdapter(pets);
