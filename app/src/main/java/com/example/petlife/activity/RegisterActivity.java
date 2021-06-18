@@ -10,13 +10,12 @@ import android.widget.EditText;
 
 import com.example.petlife.R;
 import com.example.petlife.dao.UsuarioDAO;
-import com.example.petlife.entities.Session;
 import com.example.petlife.entities.Usuario;
 import com.example.petlife.utils.Utils;
 
 public class RegisterActivity extends AppCompatActivity {
     Toolbar toolbar;
-    EditText emailCadastro, passwordCadastro, nome , endereco, telefone;
+    EditText email, password, nome , endereco, telefone;
     Button btnFazerLogin;
 
     @Override
@@ -28,11 +27,11 @@ public class RegisterActivity extends AppCompatActivity {
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
         btnFazerLogin =  findViewById(R.id.btnFazerLogin);
-        emailCadastro = findViewById(R.id.emailCadastro);
-        passwordCadastro = findViewById(R.id.passwordCadastro);
-        nome = findViewById(R.id.nome);
-        endereco = findViewById(R.id.endereco);
-        telefone = findViewById(R.id.telefone);
+        email = findViewById(R.id.emailCadastro);
+        password = findViewById(R.id.passwordCadastro);
+        nome = findViewById(R.id.nomeCadastro);
+        endereco = findViewById(R.id.enderecoCadastro);
+        telefone = findViewById(R.id.telefoneCadastro);
 
         Button btnFazerCadastro = findViewById(R.id.cadastro);
 
@@ -40,8 +39,8 @@ public class RegisterActivity extends AppCompatActivity {
         btnFazerCadastro.setOnClickListener(v -> {
 
             Usuario user = new Usuario();
-            user.setEmail(emailCadastro.getText().toString());
-            user.setPassword(passwordCadastro.getText().toString());
+            user.setEmail(email.getText().toString());
+            user.setPassword(password.getText().toString());
             user.setNome(nome.getText().toString());
             user.setEndereco(endereco.getText().toString());
             user.setTelefone(telefone.getText().toString());
@@ -51,6 +50,8 @@ public class RegisterActivity extends AppCompatActivity {
             try {
                 userDAO.insert(user);
                 Utils.aviso(this, "Usuario cadastrado com sucesso");
+                Intent it = new Intent(this, LoginActivity.class);
+                startActivity(it);
             } catch (Exception e) {
                 Utils.aviso(this, e.getMessage());
             }

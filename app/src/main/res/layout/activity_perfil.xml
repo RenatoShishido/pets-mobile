@@ -25,7 +25,7 @@
 
 
     <EditText
-        android:id="@+id/password"
+        android:id="@+id/passwordPerfil"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
@@ -37,10 +37,10 @@
         android:hint="Password"
         android:inputType="textPassword"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/email" />
+        app:layout_constraintTop_toBottomOf="@+id/emailPerfil" />
 
     <EditText
-        android:id="@+id/nome"
+        android:id="@+id/nomePerfil"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
@@ -50,42 +50,42 @@
         android:padding="10dp"
         android:background="@color/login_register_input"
         android:hint="Nome"
-        android:inputType="textPassword"
+        android:inputType="textPersonName"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/password" />
+        app:layout_constraintTop_toBottomOf="@+id/passwordPerfil" />
 
     <EditText
-        android:id="@+id/telefone"
+        android:id="@+id/telefonePerfil"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
         android:layout_marginLeft="36dp"
-        android:padding="10dp"
+        android:layout_marginTop="19dp"
         android:background="@color/login_register_input"
-        android:layout_marginTop="17dp"
         android:ems="16"
         android:hint="Telefone"
-        android:inputType="textPassword"
+        android:inputType="textPersonName"
+        android:padding="10dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/nome" />
+        app:layout_constraintTop_toBottomOf="@+id/enderecoPerfil" />
 
     <EditText
-        android:id="@+id/endereco"
+        android:id="@+id/enderecoPerfil"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
         android:layout_marginLeft="36dp"
-        android:layout_marginTop="17dp"
+        android:layout_marginTop="21dp"
         android:background="@color/login_register_input"
         android:ems="16"
         android:hint="Endereco"
-        android:inputType="textPassword"
+        android:inputType="textPersonName"
         android:padding="10dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/telefone" />
+        app:layout_constraintTop_toBottomOf="@+id/nomePerfil" />
 
     <EditText
-        android:id="@+id/email"
+        android:id="@+id/emailPerfil"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="36dp"
@@ -104,11 +104,12 @@
         android:id="@+id/btnAlterar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="17dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="172dp"
+        android:layout_marginRight="172dp"
         android:text="Alterar"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/endereco" />
+        app:layout_constraintTop_toBottomOf="@+id/telefonePerfil" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

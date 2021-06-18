@@ -1,13 +1,10 @@
 package com.example.petlife.fragment;
 
-import android.app.Activity;
 import android.app.Fragment;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,15 +16,11 @@ import android.widget.ImageButton;
 import android.widget.Spinner;
 
 import com.example.petlife.R;
-import com.example.petlife.activity.MainActivity;
 import com.example.petlife.dao.PetDAO;
 import com.example.petlife.entities.Pet;
 import com.example.petlife.entities.Session;
 import com.example.petlife.utils.Utils;
 
-import java.io.File;
-import java.io.FileOutputStream;
-import java.io.IOException;
 
 
 public class CadastroPetFragment extends Fragment {
@@ -98,14 +91,5 @@ public class CadastroPetFragment extends Fragment {
 
         });
         return view;
-    }
-
-    public void onActivityResult(int requestCode, int resultCode, Intent data) {
-        if(resultCode == Activity.RESULT_OK){
-            if(requestCode == 123){
-                Uri imagemSelecionada = data.getData();
-                imageButtonPET.setImageURI(Uri.parse(imagemSelecionada.toString()));
-            }
-        }
     }
 }

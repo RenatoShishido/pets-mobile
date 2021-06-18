@@ -24,7 +24,7 @@ public class Session {
     }
 
     public boolean isLogged() {
-        return true;
+        return isLogged;
     }
 
     public void setIsLogged(boolean isLogged) {
