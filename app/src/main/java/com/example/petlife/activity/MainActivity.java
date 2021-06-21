@@ -82,7 +82,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         if (view.equals(btnDoar)) {
             if (Session.getSession().isLogged()) {
-                CadastroPetFragment doarFragment = new CadastroPetFragment();//add fragment to transaction
+                CadastroPetFragment2 doarFragment = new CadastroPetFragment2();//add fragment to transaction
                 fragmentTransaction.addToBackStack(null);
                 fragmentTransaction.replace(R.id.fragment_container, doarFragment);
                 fragmentTransaction.commit();
