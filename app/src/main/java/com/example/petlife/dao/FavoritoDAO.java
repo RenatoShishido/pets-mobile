@@ -38,8 +38,6 @@ public class FavoritoDAO {
 
         } catch (SQLiteException e) {
             throw new IllegalArgumentException("Erro ao Favoritar");
-        } finally {
-            db.close();
         }
     }
     public List<Favorito> getFavoritosByUser (int userId) {
@@ -80,8 +78,6 @@ public class FavoritoDAO {
         }
         catch (SQLException e) {
             throw new IllegalArgumentException("Erro ao Retirar Favorito");
-        } finally {
-            db.close();
         }
     }
 

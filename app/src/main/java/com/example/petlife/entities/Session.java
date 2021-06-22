@@ -1,13 +1,10 @@
 package com.example.petlife.entities;
 
-import java.util.List;
-
 public class Session {
 
     private static Session session;
     private Usuario usuario;
     private boolean isLogged;
-    private List<Favorito> favoritos;
 
     private Session() {}
 
@@ -21,10 +18,6 @@ public class Session {
     public Usuario getUsuario() {
         return usuario;
     }
-
-    public List<Favorito> getFavoritos() {return favoritos; }
-
-    public void setFavoritos(List<Favorito> favoritos) {this.favoritos = favoritos;}
 
     public void setUsuario(Usuario usuario) {
        this.usuario = usuario;

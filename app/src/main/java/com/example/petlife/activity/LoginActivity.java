@@ -47,11 +47,8 @@ public class LoginActivity extends AppCompatActivity {
             if(userDAO.auth(user)) {
                 Session session = Session.getSession();
                 UsuarioDAO usuarioDAO = new UsuarioDAO(this);
-                FavoritoDAO favoritoDAO = new FavoritoDAO(this);
                 Usuario usuario = usuarioDAO.getByEmail(user.getEmail());
                 session.setUsuario(usuario);
-                session.setFavoritos(favoritoDAO.getFavoritosByUser(usuario.getId()));
-
                 session.setIsLogged(true);
                 Intent it = new Intent(this, MainActivity.class);
                 startActivity(it);

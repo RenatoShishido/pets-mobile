@@ -113,7 +113,7 @@ public class PetDAO {
     public List<Pet> getPetsFavoritosByUserID(int userId) {
         try {
             String queryUser =
-                    String.format("SELECT * FROM pet " +
+                    String.format("SELECT pet.id as pet, * FROM pet " +
                             "JOIN favorito ON favorito.petId = pet.id " +
                             "WHERE pet.userId =  " + userId);
 
@@ -126,7 +126,7 @@ public class PetDAO {
             List<Pet> petList = new ArrayList<Pet>();
             while (cursor.moveToNext()) {
                 Pet pet = new Pet();
-                pet.setId(cursor.getInt(cursor.getColumnIndex("id")));
+                pet.setId(cursor.getInt(cursor.getColumnIndex("pet")));
                 pet.setNome(cursor.getString(cursor.getColumnIndex("nome")));
                 pet.setIdade(cursor.getInt(cursor.getColumnIndex("idade")));
                 pet.setRaca(cursor.getString(cursor.getColumnIndex("raca")));

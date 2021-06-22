@@ -1,8 +1,10 @@
 package com.example.petlife.fragment;
 
 import android.app.Fragment;
+import android.os.Build;
 import android.os.Bundle;
 import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -29,6 +31,7 @@ public class ListagemFavoritoFragment extends Fragment {
     private RecyclerView rcvCardPetsFavoritos;
     @Nullable
     @Override
+    @RequiresApi(api = Build.VERSION_CODES.N)
     public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_favorito,container,false);
 
@@ -37,9 +40,10 @@ public class ListagemFavoritoFragment extends Fragment {
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         rcvCardPetsFavoritos.setLayoutManager(layoutManager);
         PetDAO petDAO = new PetDAO(getActivity());
+        FavoritoDAO favoritoDAO = new FavoritoDAO(getActivity());
         Usuario usuario = Session.getSession().getUsuario();
 
-        CardAdapter cardAdapter = new CardAdapter(petDAO.getPetsFavoritosByUserID(usuario.getId()), Session.getSession().getFavoritos());
+        CardAdapter cardAdapter = new CardAdapter(petDAO.getPetsFavoritosByUserID(usuario.getId()), favoritoDAO.getFavoritosByUser(usuario.getId()));
         rcvCardPetsFavoritos.setAdapter(cardAdapter);
 
         return view;
