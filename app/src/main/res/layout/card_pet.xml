@@ -26,7 +26,7 @@
                 android:textStyle="bold" />
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/petSexo"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
 
@@ -54,12 +54,14 @@
             android:orientation="horizontal">
 
             <Button
-                android:layout_height="match_parent"
+                android:id="@+id/petFavorito"
+                style="?attr/buttonBarButtonStyle"
                 android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_weight="1"
+                android:drawableTop="@drawable/ic_baseline_favorite_border_24"
                 android:text="Favoritar"
-                android:id="@+id/button2"
-                android:drawableLeft="@drawable/ic_baseline_favorite_24"
-                android:layout_weight="1" style="?attr/buttonBarButtonStyle"/>
+              />
 
         </LinearLayout>
 

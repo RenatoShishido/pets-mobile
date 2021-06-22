@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.petlife.R;
+import com.example.petlife.dao.FavoritoDAO;
 import com.example.petlife.dao.UsuarioDAO;
 import com.example.petlife.entities.Session;
 import com.example.petlife.entities.Usuario;
@@ -46,7 +47,8 @@ public class LoginActivity extends AppCompatActivity {
             if(userDAO.auth(user)) {
                 Session session = Session.getSession();
                 UsuarioDAO usuarioDAO = new UsuarioDAO(this);
-                session.setUsuario(usuarioDAO.getByEmail(user.getEmail()));
+                Usuario usuario = usuarioDAO.getByEmail(user.getEmail());
+                session.setUsuario(usuario);
                 session.setIsLogged(true);
                 Intent it = new Intent(this, MainActivity.class);
                 startActivity(it);
