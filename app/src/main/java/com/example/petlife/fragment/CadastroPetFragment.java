@@ -9,6 +9,7 @@ import android.graphics.Bitmap;
 import android.graphics.Canvas;
 import android.graphics.Matrix;
 import android.graphics.Paint;
+import android.graphics.PorterDuff;
 import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
@@ -24,6 +25,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.CheckBox;
@@ -41,6 +43,8 @@ import com.example.petlife.utils.Utils;
 
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 
 public class CadastroPetFragment extends Fragment {
@@ -50,7 +54,7 @@ public class CadastroPetFragment extends Fragment {
     CheckBox castradoPET, vacinadoPET;
     Spinner sexoPET;
     Button doarBF;
-    private Button btnTake, btnSelect;
+    private Button btnTake, btnSelect, pegaFoto;
     private ImageView ivImage;
     private String imagemString = "";
     // Códigos auxiliares para tratamentos futuros
@@ -73,6 +77,12 @@ public class CadastroPetFragment extends Fragment {
         castradoPET = view.findViewById(R.id.checkbox_castrado);
         vacinadoPET = view.findViewById(R.id.checkbox_vacinado);
         imageButtonPET = view.findViewById(R.id.imageButtonPET);
+        pegaFoto = view.findViewById(R.id.pegaFoto);
+
+        pegaFoto.setOnClickListener(v -> {
+            Intent intent = new Intent(android.provider.MediaStore.ACTION_IMAGE_CAPTURE);
+            startActivityForResult(intent, CAMERA);
+        });
 
 
         Spinner sexoPET = (Spinner) view.findViewById(R.id.spinner1);
@@ -84,37 +94,60 @@ public class CadastroPetFragment extends Fragment {
 
         sexoPET.setAdapter(adapter);
 
-
         imageButtonPET.setOnClickListener(v -> {
             Intent galleryIntent = new Intent(Intent.ACTION_PICK,
                     android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
             startActivityForResult(galleryIntent, GALLERY);
         });
         doarBF.setOnClickListener(v -> {
+            pet.setSexo(sexoPET.getSelectedItem().toString());
             salvarDados();
         });
         return view;
     }
 
     public void salvarDados() {
+        List<String> erros = new ArrayList<String>();
+        if (nomePET.getText().toString().isEmpty()){
+            erros.add("Campo nome precisa ser preenchido");
+            nomePET.getBackground().mutate().setColorFilter(ContextCompat.getColor(getActivity(),
+                    R.color.design_default_color_error), PorterDuff.Mode.SRC_ATOP);
+        }
+        if (racaPET.getText().toString().isEmpty()) {
+            erros.add("Campo raca precisa ser preenchido");
+            racaPET.getBackground().mutate().setColorFilter(ContextCompat.getColor(getActivity(),
+                    R.color.design_default_color_error), PorterDuff.Mode.SRC_ATOP);
+        }
+        if (idadePET.getText().toString().isEmpty()) {
+            erros.add("Campo idade precisa ser preenchido");
+            idadePET.getBackground().mutate().setColorFilter(ContextCompat.getColor(getActivity(),
+                    R.color.design_default_color_error), PorterDuff.Mode.SRC_ATOP);
+        }
 
-        if (nomePET.getText().toString().isEmpty())
+        if (tipoPET.getText().toString().isEmpty()) {
+            erros.add("Campo tipo precisa ser preenchido");
+            tipoPET.getBackground().mutate().setColorFilter(ContextCompat.getColor(getActivity(),
+                    R.color.design_default_color_error), PorterDuff.Mode.SRC_ATOP);
+        }
+
+        if(erros.size() > 0 ) {
+            String message = "";
+            for (int i = 0; i < erros.size() ; i++) {
+                message +=  erros.get(i) + "\n";
+            }
+
+            Utils.aviso(getActivity(), message);
             return;
-        if (racaPET.getText().toString().isEmpty())
-            return;
-        if (idadePET.getText().toString().isEmpty())
-            return;
-        if (tipoPET.getText().toString().isEmpty())
-            return;
+        }
+
 
         pet.setIdade(Integer.parseInt(idadePET.getText().toString()));
         pet.setNome(nomePET.getText().toString());
         pet.setRaca(racaPET.getText().toString());
         pet.setTipo(tipoPET.getText().toString());
-        pet.setSexo("M");
-        pet.setVacinado(0);
-        pet.setCastrado(0);
-        pet.setUserId(1);
+        pet.setVacinado(vacinadoPET.isChecked() == true ? 1 : 0);
+        pet.setCastrado(castradoPET.isChecked() == true ? 1 : 0);
+        pet.setUserId(Session.getSession().getUsuario().getId());
         pet.setPetPictureUrl(imagemString);
 
         PetDAO petDAO = new PetDAO(getActivity());
@@ -122,12 +155,23 @@ public class CadastroPetFragment extends Fragment {
         try {
             petDAO.insert(pet);
             Utils.aviso(getActivity(), "Pet cadastrado com sucesso");
+            limparTela();
         } catch (Exception e) {
             Utils.aviso(getActivity(), e.getMessage());
         }
-
     }
 
+    public void limparTela() {
+        nomePET.setText("");
+        racaPET.setText("");
+        tipoPET.setText("");
+        idadePET.setText("");
+        vacinadoPET.setChecked(false);
+        castradoPET.setChecked(false);
+        pet.setUserId(null);
+        imageButtonPET.setImageResource(R.drawable.ic_baseline_pets_24);
+        pet.setPetPictureUrl("");
+    }
 
     @Override
     public void onResume() {
@@ -147,7 +191,7 @@ public class CadastroPetFragment extends Fragment {
         }
         if (requestCode == CAMERA) {
             Bitmap bitmap = (Bitmap) data.getExtras().get("data");
-           // ivImage.setImageBitmap(resizeImage(bitmap, 600, 700));
+            imageButtonPET.setImageBitmap(resizeImage(bitmap, 400, 150));
 
             saveImage(bitmap);
 
@@ -157,7 +201,7 @@ public class CadastroPetFragment extends Fragment {
                 try {
                     Bitmap bitmap = MediaStore.Images.Media.getBitmap(getActivity().getContentResolver(),
                             contentURI);
-                    //    ivImage.setImageBitmap(resizeImage(bitmap, 600, 700));
+                    imageButtonPET.setImageBitmap(resizeImage(bitmap, 400, 150));
                     saveImage(bitmap);
 
 

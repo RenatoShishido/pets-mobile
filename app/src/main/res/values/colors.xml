@@ -8,4 +8,5 @@
     <color name="black">#FF000000</color>
     <color name="white">#FFFFFFFF</color>
     <color name="login_register_input">#F1EFEF</color>
+    <color name="error">#ff4040</color>
 </resources>

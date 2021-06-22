@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.example.petlife.dao.PetDAO;
 import com.example.petlife.dao.UsuarioDAO;
 import com.example.petlife.entities.Pet;
 import androidx.appcompat.app.AppCompatActivity;
@@ -44,9 +45,6 @@ public class PetActivity extends AppCompatActivity {
         btnAdotar.setOnClickListener(v -> {showDialog();});
         usuarioDAO = new UsuarioDAO(this);
 
-
-
-
     }
 
     public void inicializarItens() {
@@ -70,12 +68,11 @@ public class PetActivity extends AppCompatActivity {
         }
         idadePET.setText(pet.getIdade() != null? pet.getIdade().toString(): idadePET.getText());
 
-        if(pet.getCastrado() != null) {
-            castradoPET.setText(pet.getCastrado() == 1? "sim": "não");
-        }
-        if(pet.getVacinado() != null) {
-            vacinadoPET.setText(pet.getVacinado() == 1? "sim": "não");
-        }
+
+        castradoPET.setText(pet.getCastrado() == null? "não": "sim");
+
+        vacinadoPET.setText(pet.getVacinado() == null? "não": "sim");
+
 
         tipoPET.setText(pet.getTipo() != null? pet.getTipo(): tipoPET.getText());
         sexoPET.setText(pet.getSexo() != null? pet.getSexo(): sexoPET.getText());
@@ -85,10 +82,8 @@ public class PetActivity extends AppCompatActivity {
     }
 
     public void showDialog() {
-        Usuario usuario = new Usuario();
-        usuario.setEmail("highetiro!@gmail.com");
-        usuario.setNome("Higor Henrique Campos de Assis");
-        usuario.setTelefone("6799999999");
+        UsuarioDAO usuarioDAO = new UsuarioDAO(this);
+        Usuario usuario = usuarioDAO.getById(pet.getUserId());
 
         AlertDialog.Builder builder1 = new AlertDialog.Builder(this);
         builder1.setTitle("Contatce o Doador para adotar o Pet! ");

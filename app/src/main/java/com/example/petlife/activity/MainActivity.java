@@ -156,9 +156,13 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 break;
 
             case R.id.loggout:
-                finish();
+                Session.getSession().setIsLogged(false);
+                Session.getSession().setUsuario(null);
+                finishAffinity();
                 break;
 
+            default:
+                throw new IllegalStateException("Unexpected value: " + menuItem.getItemId());
         }
         drawerLayout.closeDrawer(GravityCompat.START); return true;
     }

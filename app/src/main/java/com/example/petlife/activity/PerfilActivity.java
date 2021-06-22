@@ -13,11 +13,12 @@ import com.example.petlife.dao.UsuarioDAO;
 import com.example.petlife.entities.Session;
 import com.example.petlife.entities.Usuario;
 import com.example.petlife.utils.Utils;
+import org.mindrot.jbcrypt.BCrypt;
 
 public class PerfilActivity extends AppCompatActivity {
 
     Toolbar toolbar;
-    EditText email, password, nome , endereco, telefone;
+    EditText emailPerfil, passwordPerfil, nomePerfil , enderecoPerfil, telefonePerfil;
     Button btnAlterar;
 
     @Override
@@ -35,17 +36,19 @@ public class PerfilActivity extends AppCompatActivity {
 
         btnAlterar.setOnClickListener(v -> {
             Usuario user = new Usuario();
-            user.setEmail(email.getText().toString());
-            user.setPassword(password.getText().toString());
-            user.setNome(nome.getText().toString());
-            user.setEndereco(endereco.getText().toString());
-            user.setTelefone(telefone.getText().toString());
+            user.setId(Session.getSession().getUsuario().getId());
+            user.setEmail(emailPerfil.getText().toString());
+            user.setPassword(passwordPerfil.getText().toString());
+            user.setNome(nomePerfil.getText().toString());
+            user.setEndereco(enderecoPerfil.getText().toString());
+            user.setTelefone(telefonePerfil.getText().toString());
 
-            UsuarioDAO userDAO1 = new UsuarioDAO(this);
+            UsuarioDAO userDAO = new UsuarioDAO(this);
 
             try {
-//                userDAO.insert(user);
+                userDAO.update(user);
                 Utils.aviso(this, "Usuario alterado com sucesso");
+                Session.getSession().setUsuario(user);
             } catch (Exception e) {
                 Utils.aviso(this, e.getMessage());
             }
@@ -55,26 +58,26 @@ public class PerfilActivity extends AppCompatActivity {
     }
 
     public void inicializarItens() {
-        email = findViewById(R.id.emailPerfil);
-        password = findViewById(R.id.passwordPerfil);
-        nome = findViewById(R.id.nomePerfil);
-        endereco = findViewById(R.id.enderecoPerfil);
-        telefone = findViewById(R.id.telefonePerfil);
+        emailPerfil = findViewById(R.id.emailPerfil);
+        passwordPerfil = findViewById(R.id.passwordPerfil);
+        nomePerfil = findViewById(R.id.nomePerfil);
+        enderecoPerfil = findViewById(R.id.enderecoPerfil);
+        telefonePerfil = findViewById(R.id.telefonePerfil);
         btnAlterar = findViewById(R.id.btnAlterar);
 
         Usuario usuario = Session.getSession().getUsuario();
 
         if(Session.getSession().isLogged()){
             if(usuario.getEmail() != null)
-                email.setText(usuario.getEmail());
+                emailPerfil.setText(usuario.getEmail());
             if(usuario.getPassword() != null)
-                password.setText(usuario.getPassword());
+                passwordPerfil.setText(usuario.getPassword());
             if(usuario.getNome() != null)
-                nome.setText(usuario.getNome());
+                nomePerfil.setText(usuario.getNome());
             if(usuario.getEndereco() != null)
-                endereco.setText(usuario.getEndereco());
+                enderecoPerfil.setText(usuario.getEndereco());
             if(usuario.getTelefone() != null)
-                telefone.setText(usuario.getTelefone());
+                telefonePerfil.setText(usuario.getTelefone());
 
         }
 
