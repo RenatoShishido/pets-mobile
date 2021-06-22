@@ -1,5 +1,6 @@
 package com.example.petlife.activity;
 
+import android.app.Activity;
 import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -15,9 +16,11 @@ import android.widget.ImageButton;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.petlife.R;
 import com.example.petlife.dao.FavoritoDAO;
+import com.example.petlife.dao.PetDAO;
 import com.example.petlife.entities.Favorito;
 import com.example.petlife.entities.Pet;
 import com.example.petlife.entities.Session;
@@ -35,6 +38,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.MyViewHolder> 
     public CardAdapter(List<Pet> pets, List<Favorito> favoritos) {
         this.pets = pets;
         this.favoritos = favoritos;
+
     }
 
 
@@ -55,7 +59,9 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.MyViewHolder> 
         Pet pet = pets.get(position);
 
         holder.petNome.setText(pet.getNome());
-        holder.petDescricao.setText("qualquerCoisa");
+        holder.petDescricao.setText(pet.getTipo());
+        holder.petSexo.setText(pet.getRaca());
+
 
         if (pet.getPetPictureUrl() != null && !pet.getPetPictureUrl().isEmpty()) {
             byte[] imagemBytes = Base64.decode(pet.getPetPictureUrl(), Base64.DEFAULT);
@@ -66,7 +72,21 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.MyViewHolder> 
         if (Session.getSession().isLogged()) {
             List<Favorito> favs = favoritos.stream().filter(f -> f.getPetId() == pet.getId()).collect(Collectors.toList());
             if (favs.size() > 0) {
-                holder.petFavorito.setCompoundDrawablesRelativeWithIntrinsicBounds(0, R.drawable.ic_baseline_favorite_24, 0, 0);
+                holder
+                .petFavorito
+                .setCompoundDrawablesRelativeWithIntrinsicBounds
+                (0, R.drawable.ic_baseline_favorite_24, 0, 0);
+
+                holder.petFavorito.setText("Desfavoritar");
+
+            }
+            else {
+                holder
+                .petFavorito
+                .setCompoundDrawablesRelativeWithIntrinsicBounds
+                (0, R.drawable.ic_baseline_favorite_border_24, 0, 0);
+
+                holder.petFavorito.setText("Favoritar");
             }
         }
     }
@@ -77,10 +97,11 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.MyViewHolder> 
     }
 
     public class MyViewHolder extends RecyclerView.ViewHolder {
-        private TextView petNome, petDescricao;
+        private TextView petNome, petDescricao, petSexo;
         private ImageButton petImage;
         private Button petFavorito;
         private FavoritoDAO favoritoDAO;
+        private int userId;
         View view;
 
         public MyViewHolder(@NonNull View itemView) {
@@ -88,6 +109,7 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.MyViewHolder> 
             view = itemView;
 
             petNome = itemView.findViewById(R.id.petNome);
+            petSexo = itemView.findViewById(R.id.petSexo);
             petDescricao = itemView.findViewById(R.id.petDescricao);
             petImage = itemView.findViewById(R.id.petImage);
             petFavorito = itemView.findViewById(R.id.petFavorito);
@@ -128,9 +150,11 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.MyViewHolder> 
                 Pet pet = pets.get(getAdapterPosition());
 
                 List<Favorito> favs = favoritos.stream().filter(f -> f.getPetId() == pet.getId()).collect(Collectors.toList());
-                if (favs.size() > 0) {Desfavoritar(pet);}
-
-                else { Favoritar(pet);}
+                if (favs.size() > 0) {
+                    Desfavoritar(pet);
+                } else {
+                    Favoritar(pet);
+                }
 
             } catch (Exception exception) {
                 Log.d("teste", exception.getMessage());
@@ -139,17 +163,52 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.MyViewHolder> 
         }
 
         public void Favoritar(Pet pet) {
-            petFavorito.setCompoundDrawablesRelativeWithIntrinsicBounds(0, R.drawable.ic_baseline_favorite_24, 0, 0);
+
+
+            userId = Session.getSession().getUsuario().getId();
 
             Favorito favorito = new Favorito();
             favorito.setPetId(pet.getId());
             favorito.setUserId(Session.getSession().getUsuario().getId());
-            favoritoDAO.insert(favorito);
+            try {
+                petFavorito.setCompoundDrawablesRelativeWithIntrinsicBounds(
+                        0, R.drawable.ic_baseline_favorite_24, 0, 0);
+                petFavorito.setText("Desfavoritar");
+                favoritoDAO.insert(favorito);
+            } catch (Exception ex) {
+
+            }
+            finally {
+                favoritos = favoritoDAO.getFavoritosByUser(userId);
+            }
         }
 
         public void Desfavoritar(Pet pet) {
-            petFavorito.setCompoundDrawablesRelativeWithIntrinsicBounds(0, R.drawable.ic_baseline_favorite_border_24, 0, 0);
-            favoritoDAO.delete(pet.getId());
+
+
+            userId = Session.getSession().getUsuario().getId();
+            try {
+                petFavorito.setCompoundDrawablesRelativeWithIntrinsicBounds(
+                        0, R.drawable.ic_baseline_favorite_border_24, 0, 0);
+                petFavorito.setText("Favoritar");
+
+                List<Favorito> favs =
+                        favoritos.stream().filter(f -> f.getPetId() == pet.getId() &&
+                        f.getUserId() == userId).collect(Collectors.toList());
+
+                if(favs.size() > 0) {
+                    for (Favorito item:favs)
+                          {
+                              favoritoDAO.delete(item.getId());
+                    }
+                }
+
+            } catch (Exception ex) {
+
+            }
+            finally {
+                favoritos = favoritoDAO.getFavoritosByUser(userId);
+            }
         }
 
 
