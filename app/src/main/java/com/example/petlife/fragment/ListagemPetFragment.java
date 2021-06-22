@@ -14,6 +14,7 @@ import com.example.petlife.R;
 import com.example.petlife.activity.CardAdapter;
 import com.example.petlife.dao.PetDAO;
 import com.example.petlife.entities.Pet;
+import com.example.petlife.entities.Session;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -34,8 +35,14 @@ public class ListagemPetFragment extends Fragment {
 
 
         List<Pet> pets = new ArrayList<>();
+        CardAdapter cardAdapter;
+        if(Session.getSession().isLogged()) {
+             cardAdapter = new CardAdapter(petDAO.getAll(), Session.getSession().getFavoritos() );
+        }
+        else {
+             cardAdapter = new CardAdapter(petDAO.getAll(), null);
+        }
 
-        CardAdapter cardAdapter = new CardAdapter(petDAO.getAll());
         rcvCardPets.setAdapter(cardAdapter);
 
         return view;

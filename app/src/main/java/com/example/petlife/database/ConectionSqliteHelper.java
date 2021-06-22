@@ -7,11 +7,12 @@ import android.database.sqlite.SQLiteOpenHelper;
 public class ConectionSqliteHelper extends SQLiteOpenHelper{
 
     private static final String DATABASE_NAME = "pet-doacao";
-    private static final int DATABASE_VERSION = 1;
+    private static final int DATABASE_VERSION = 4;
 
 
     private static final String TABLE_USERS = "usuario";
     private static final String TABLE_PETS = "pet";
+    private static final String TABLE_FAVORITOS = "favorito";
 
 
     private static final String KEY_USER_ID = "id";
@@ -33,6 +34,11 @@ public class ConectionSqliteHelper extends SQLiteOpenHelper{
     private static final String KEY_PET_CASTRADO = "castrado";
     private static final String KEY_PET_USER_ID_FK = "userId";
     private static final String KEY_PET_PROFILE_PICTURE_URL = "petPictureUrl";
+
+
+    private static final String KEY_FAVORITO_ID = "id";
+    private static final String KEY_FAVORITO_USER_ID_FK = "userId";
+    private static final String KEY_FAVORITO_PET_ID_FK = "petId";
 
     private static ConectionSqliteHelper sInstance;
 
@@ -74,9 +80,17 @@ public class ConectionSqliteHelper extends SQLiteOpenHelper{
                 KEY_PET_PROFILE_PICTURE_URL + " TEXT " +
                 ")";
 
+        String CREATE_FAVORITOS_TABLE = "CREATE TABLE " + TABLE_FAVORITOS +
+                "(" +
+                KEY_FAVORITO_ID + " INTEGER PRIMARY KEY AUTOINCREMENT, " +
+                KEY_FAVORITO_USER_ID_FK +" INTEGER REFERENCES " + TABLE_USERS + "," +
+                KEY_FAVORITO_PET_ID_FK + " INTEGER REFERENCES " + TABLE_PETS  +
+                ")";
 
         db.execSQL(CREATE_USERS_TABLE);
         db.execSQL(CREATE_PETS_TABLE);
+        db.execSQL(CREATE_FAVORITOS_TABLE);
+
     }
 
     @Override
@@ -84,6 +98,8 @@ public class ConectionSqliteHelper extends SQLiteOpenHelper{
         if (oldVersion != newVersion) {
             db.execSQL("DROP TABLE IF EXISTS " + TABLE_USERS);
             db.execSQL("DROP TABLE IF EXISTS " + TABLE_PETS);
+            db.execSQL("DROP TABLE IF EXISTS " + TABLE_FAVORITOS);
+
             onCreate(db);
         }
     }

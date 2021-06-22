@@ -27,7 +27,7 @@ public class PetDAO {
         try {
             Validator.checkPet(pet);
 
-            ContentValues values  = new ContentValues();
+            ContentValues values = new ContentValues();
             values.put("nome", pet.getNome());
             values.put("idade", pet.getIdade());
             values.put("raca", pet.getRaca());
@@ -52,12 +52,12 @@ public class PetDAO {
             String query = String.format("SELECT * FROM pet WHERE id = " + id);
             Cursor cursor = db.rawQuery(query, null);
 
-            if(cursor == null) {
+            if (cursor == null) {
                 throw new ArgumentInvalidException("Pet nao encontrado");
             }
 
             Pet pet = new Pet();
-            while(cursor.moveToNext()){
+            while (cursor.moveToNext()) {
                 pet.setId(cursor.getInt(cursor.getColumnIndex("id")));
                 pet.setNome(cursor.getString(cursor.getColumnIndex("nome")));
                 pet.setIdade(cursor.getInt(cursor.getColumnIndex("idade")));
@@ -80,15 +80,51 @@ public class PetDAO {
     public List<Pet> getByNome(String nome) {
         try {
             String queryUser =
-                    String.format("SELECT * FROM pet WHERE nome = \""+ nome + "\"" );
+                    String.format("SELECT * FROM pet WHERE nome = \"" + nome + "\"");
             Cursor cursor = db.rawQuery(queryUser, null);
 
-            if(cursor == null) {
+            if (cursor == null) {
                 throw new ArgumentInvalidException("Pets nao encontrado");
             }
 
             List<Pet> petList = new ArrayList<Pet>();
-            while(cursor.moveToNext()){
+            while (cursor.moveToNext()) {
+                Pet pet = new Pet();
+                pet.setId(cursor.getInt(cursor.getColumnIndex("id")));
+                pet.setNome(cursor.getString(cursor.getColumnIndex("nome")));
+                pet.setIdade(cursor.getInt(cursor.getColumnIndex("idade")));
+                pet.setRaca(cursor.getString(cursor.getColumnIndex("raca")));
+                pet.setTipo(cursor.getString(cursor.getColumnIndex("tipo")));
+                pet.setSexo(cursor.getString(cursor.getColumnIndex("sexo")));
+                pet.setCastrado(cursor.getInt(cursor.getColumnIndex("castrado")));
+                pet.setCastrado(cursor.getInt(cursor.getColumnIndex("vacinado")));
+                pet.setUserId(cursor.getInt(cursor.getColumnIndex("userId")));
+                pet.setPetPictureUrl(cursor.getString(cursor.getColumnIndex("petPictureUrl")));
+
+                petList.add(pet);
+            }
+
+            return petList;
+        } catch (SQLiteException e) {
+            throw new IllegalArgumentException(e.getMessage());
+        }
+    }
+
+    public List<Pet> getPetsFavoritosByUserID(int userId) {
+        try {
+            String queryUser =
+                    String.format("SELECT * FROM pet " +
+                            "JOIN favorito ON favorito.petId = pet.id " +
+                            "WHERE pet.userId =  " + userId);
+
+            Cursor cursor = db.rawQuery(queryUser, null);
+
+            if (cursor == null) {
+                throw new ArgumentInvalidException("Nao existe pets");
+            }
+
+            List<Pet> petList = new ArrayList<Pet>();
+            while (cursor.moveToNext()) {
                 Pet pet = new Pet();
                 pet.setId(cursor.getInt(cursor.getColumnIndex("id")));
                 pet.setNome(cursor.getString(cursor.getColumnIndex("nome")));
@@ -116,12 +152,12 @@ public class PetDAO {
                     String.format("SELECT * FROM pet");
             Cursor cursor = db.rawQuery(queryUser, null);
 
-            if(cursor == null) {
+            if (cursor == null) {
                 throw new ArgumentInvalidException("Nao existe pets");
             }
 
             List<Pet> petList = new ArrayList<Pet>();
-            while(cursor.moveToNext()){
+            while (cursor.moveToNext()) {
                 Pet pet = new Pet();
                 pet.setId(cursor.getInt(cursor.getColumnIndex("id")));
                 pet.setNome(cursor.getString(cursor.getColumnIndex("nome")));
