@@ -2,7 +2,10 @@ package com.example.petlife.activity;
 import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
 import android.os.Bundle;
+import android.util.Base64;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -58,9 +61,13 @@ public class PetActivity extends AppCompatActivity {
         imageView2 = findViewById(R.id.imageView2);
 
         nomePET.setText(pet.getNome() != null? pet.getNome():nomePET.getText());
-        imageView2.setImageResource(pet.getPetPictureUrl() != null? pet.getPetPictureUrl():
-                R.drawable.dog2);
 
+        if(pet.getPetPictureUrl() != null && !pet.getPetPictureUrl().isEmpty() ) {
+            byte[] imagemBytes = Base64.decode(pet.getPetPictureUrl(),Base64.DEFAULT);
+            Bitmap imagemDecodificada = BitmapFactory.decodeByteArray(imagemBytes, 0, imagemBytes.length);
+            imageView2.setImageBitmap(imagemDecodificada);
+
+        }
         idadePET.setText(pet.getIdade() != null? pet.getIdade().toString(): idadePET.getText());
 
         if(pet.getCastrado() != null) {

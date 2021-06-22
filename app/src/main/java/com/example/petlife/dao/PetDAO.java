@@ -67,7 +67,7 @@ public class PetDAO {
                 pet.setCastrado(cursor.getInt(cursor.getColumnIndex("castrado")));
                 pet.setCastrado(cursor.getInt(cursor.getColumnIndex("vacinado")));
                 pet.setUserId(cursor.getInt(cursor.getColumnIndex("userId")));
-                pet.setPetPictureUrl(cursor.getInt(cursor.getColumnIndex("petPictureUrl")));
+                pet.setPetPictureUrl(cursor.getString(cursor.getColumnIndex("petPictureUrl")));
 
             }
 
@@ -99,7 +99,7 @@ public class PetDAO {
                 pet.setCastrado(cursor.getInt(cursor.getColumnIndex("castrado")));
                 pet.setCastrado(cursor.getInt(cursor.getColumnIndex("vacinado")));
                 pet.setUserId(cursor.getInt(cursor.getColumnIndex("userId")));
-                pet.setPetPictureUrl(cursor.getInt(cursor.getColumnIndex("petPictureUrl")));
+                pet.setPetPictureUrl(cursor.getString(cursor.getColumnIndex("petPictureUrl")));
 
                 petList.add(pet);
             }
@@ -110,7 +110,7 @@ public class PetDAO {
         }
     }
 
-    public List<Pet> getAll(String nome) {
+    public List<Pet> getAll() {
         try {
             String queryUser =
                     String.format("SELECT * FROM pet");
@@ -132,7 +132,7 @@ public class PetDAO {
                 pet.setCastrado(cursor.getInt(cursor.getColumnIndex("castrado")));
                 pet.setCastrado(cursor.getInt(cursor.getColumnIndex("vacinado")));
                 pet.setUserId(cursor.getInt(cursor.getColumnIndex("userId")));
-                pet.setPetPictureUrl(cursor.getInt(cursor.getColumnIndex("petPictureUrl")));
+                pet.setPetPictureUrl(cursor.getString(cursor.getColumnIndex("petPictureUrl")));
 
                 petList.add(pet);
             }

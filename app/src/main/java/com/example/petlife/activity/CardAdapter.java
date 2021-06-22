@@ -1,6 +1,10 @@
 package com.example.petlife.activity;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.util.Base64;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -42,8 +46,13 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.MyViewHolder> 
 
         holder.petNome.setText(pet.getNome());
         holder.petDescricao.setText("qualquerCoisa");
-        holder.petImage.setImageResource(pet.getPetPictureUrl());
 
+        if(pet.getPetPictureUrl() != null && !pet.getPetPictureUrl().isEmpty() ) {
+            byte[] imagemBytes = Base64.decode(pet.getPetPictureUrl(),Base64.DEFAULT);
+            Bitmap imagemDecodificada = BitmapFactory.decodeByteArray(imagemBytes, 0, imagemBytes.length);
+            holder.petImage.setImageBitmap(imagemDecodificada);
+
+        }
     }
 
     @Override
@@ -70,10 +79,16 @@ public class CardAdapter extends RecyclerView.Adapter<CardAdapter.MyViewHolder> 
 
 
         public void onClickBtnImage() {
-            Pet pet = pets.get(getAdapterPosition());
-            Intent it = new Intent(view.getContext(), PetActivity.class);
-            it.putExtra("pet",pet);
-            view.getContext().startActivity(it);
+            try {
+                Pet pet = pets.get(getAdapterPosition());
+                Intent it = new Intent(view.getContext(), PetActivity.class);
+                it.putExtra("pet", pet);
+                view.getContext().startActivity(it);
+            }
+            catch(Exception exception) {
+                Log.d("teste",exception.getMessage());
+
+            }
 
         }
 

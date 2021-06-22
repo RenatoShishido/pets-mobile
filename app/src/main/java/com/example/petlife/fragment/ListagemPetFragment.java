@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 
 import com.example.petlife.R;
 import com.example.petlife.activity.CardAdapter;
+import com.example.petlife.dao.PetDAO;
 import com.example.petlife.entities.Pet;
 
 import java.util.ArrayList;
@@ -29,38 +30,12 @@ public class ListagemPetFragment extends Fragment {
 
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(getActivity());
         rcvCardPets.setLayoutManager(layoutManager);
+        PetDAO petDAO = new PetDAO(getActivity());
 
 
         List<Pet> pets = new ArrayList<>();
 
-        Pet p = new Pet();
-        p.setNome("Mel");
-        p.setCastrado(1);
-        p.setIdade(16);
-        p.setRaca("Pintcher");
-        p.setSexo("M");
-        p.setVacinado(0);
-        p.setTipo("Cachorro");
-        p.setPetPictureUrl(R.drawable.dog);
-        pets.add(p);
-
-        Pet p1 = new Pet();
-        p1.setNome("Lett");
-        p1.setPetPictureUrl(R.drawable.gato2);
-        pets.add(p1);
-
-        Pet p2 = new Pet();
-        p2.setNome("trim");
-        p2.setPetPictureUrl(R.drawable.gato);
-        pets.add(p2);
-
-        Pet p3 = new Pet();
-        p3.setNome("Guto");
-
-        p3.setPetPictureUrl(R.drawable.dog2);
-        pets.add(p3);
-
-        CardAdapter cardAdapter = new CardAdapter(pets);
+        CardAdapter cardAdapter = new CardAdapter(petDAO.getAll());
         rcvCardPets.setAdapter(cardAdapter);
 
         return view;

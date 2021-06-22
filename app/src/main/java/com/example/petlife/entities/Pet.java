@@ -18,11 +18,11 @@ public class Pet implements Serializable {
     private Integer vacinado;
     private Integer castrado;
     private Integer userId;
-    private Integer petPictureUrl;
+    private String petPictureUrl;
 
     public Pet() {}
 
-    public Pet(Integer id, String nome, Integer idade, String raca, String tipo, String sexo, Integer vacinado, Integer castrado, Integer userId, Integer petPictureUrl) {
+    public Pet(Integer id, String nome, Integer idade, String raca, String tipo, String sexo, Integer vacinado, Integer castrado, Integer userId, String petPictureUrl) {
         this.id = id;
         this.nome = nome;
         this.idade = idade;
@@ -107,11 +107,11 @@ public class Pet implements Serializable {
         this.userId = userId;
     }
 
-    public Integer getPetPictureUrl() {
+    public String getPetPictureUrl() {
         return petPictureUrl;
     }
 
-    public void setPetPictureUrl(Integer petPictureUrl) {
+    public void setPetPictureUrl(String petPictureUrl) {
         this.petPictureUrl = petPictureUrl;
     }
 
